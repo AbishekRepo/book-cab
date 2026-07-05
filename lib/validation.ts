@@ -19,4 +19,4 @@ export const quoteSchema = z.object({
   vehicle: z.string().optional().default("Swift Dzire"),
 });
 
-export type QuoteInput = z.infer<typeof quoteSchema>;
+export type QuoteInput = z.input<typeof quoteSchema>;
