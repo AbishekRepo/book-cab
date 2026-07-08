@@ -10,13 +10,33 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-cover bg-[center_80%] bg-no-repeat pt-8 pb-10 lg:pt-16 lg:pb-12"
-      style={{ backgroundImage: "url('/shamicabs-heroimage2.png')" }}
+      className="relative overflow-hidden bg-neutral-950 pb-10 lg:bg-transparent lg:pt-16 lg:pb-12"
     >
-      <div className="absolute inset-0 bg-black/60" />
+      {/* Desktop-only background image + dark overlay */}
+      <div
+        className="absolute inset-0 hidden bg-cover bg-[center_80%] bg-no-repeat lg:block"
+        style={{ backgroundImage: "url('/shamicabs-heroimage2.png')" }}
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 hidden bg-black/60 lg:block" />
+
+      {/* Mobile-only hero image band */}
+      <div className="relative h-[26dvh] min-h-[190px] w-full overflow-hidden lg:hidden">
+        <img
+          src="/shamicabs-heroimage2.png"
+          alt=""
+          aria-hidden="true"
+          loading="eager"
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover object-[center_58%]"
+        />
+        <div className="absolute inset-0 bg-black/15" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 via-60% to-neutral-950" />
+      </div>
+
       <Container className="relative grid items-center gap-4 lg:gap-7 lg:grid-cols-12">
         {/* Left */}
-        <div className="lg:col-span-7 xl:col-span-7 mt-8 lg:mt-20">
+        <div className="lg:col-span-7 xl:col-span-7 -mt-14 lg:mt-20">
           <span className="hidden lg:inline-flex items-center gap-1.5 rounded-full bg-white/20 backdrop-blur-md px-3 py-1 text-sm font-medium text-white border border-white/10">
             <Star className="size-4 fill-white text-white" />
             {SITE.rating} Google Rating · {SITE.happyCustomers} Happy Customers
